@@ -116,7 +116,12 @@
       "Bash(\".\\context-extender.exe\" query list)",
       "Bash(\".\\context-extender.exe\" graphql --help)",
       "Bash(\".\\context-extender.exe\" graphql stats)",
-      "Bash(\".\\context-extender.exe\" database capture session-start)"
+      "Bash(\".\\context-extender.exe\" database capture session-start)",
+      "Bash(CGO_ENABLED=0 \"C:/Users/marko/sdk/go1.25.1/bin/go.exe\" build -o context-extender.exe .)",
+      "Bash(.context-extender.exe version)",
+      "Bash(\".\\context-extender.exe\" version)",
+      "Bash(\".\\context-extender.exe\" database status)",
+      "Bash(\".\\context-extender.exe\" configure --status)"
     ],
     "deny": [],
     "ask": []
