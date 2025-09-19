@@ -121,7 +121,8 @@
       "Bash(.context-extender.exe version)",
       "Bash(\".\\context-extender.exe\" version)",
       "Bash(\".\\context-extender.exe\" database status)",
-      "Bash(\".\\context-extender.exe\" configure --status)"
+      "Bash(\".\\context-extender.exe\" configure --status)",
+      "Bash(gh repo create:*)"
     ],
     "deny": [],
     "ask": []

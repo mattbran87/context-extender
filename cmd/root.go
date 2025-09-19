@@ -15,6 +15,19 @@ var (
 	GitCommit = "unknown"
 )
 
+// SetBuildInfo sets the build information from main
+func SetBuildInfo(version, buildDate, gitCommit string) {
+	if version != "" && version != "dev" {
+		Version = version
+	}
+	if buildDate != "" && buildDate != "unknown" {
+		BuildDate = buildDate
+	}
+	if gitCommit != "" && gitCommit != "unknown" {
+		GitCommit = gitCommit
+	}
+}
+
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
 	Use:   "context-extender",

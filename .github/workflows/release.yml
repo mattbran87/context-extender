@@ -1,0 +1,117 @@
+name: Release
+
+on:
+  push:
+    tags: ['v*']
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        goos: [linux, windows, darwin]
+        goarch: [amd64, arm64]
+        exclude:
+          # Windows ARM64 support is limited
+          - goos: windows
+            goarch: arm64
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Go
+        uses: actions/setup-go@v4
+        with:
+          go-version: '1.21'
+
+      - name: Get dependencies
+        run: go mod download
+
+      - name: Set binary name
+        id: binary
+        run: |
+          BINARY_NAME="context-extender-${{ matrix.goos }}-${{ matrix.goarch }}"
+          if [ "${{ matrix.goos }}" = "windows" ]; then
+            BINARY_NAME="${BINARY_NAME}.exe"
+          fi
+          echo "name=${BINARY_NAME}" >> $GITHUB_OUTPUT
+
+      - name: Build binary
+        env:
+          GOOS: ${{ matrix.goos }}
+          GOARCH: ${{ matrix.goarch }}
+          CGO_ENABLED: 0
+        run: |
+          go build -ldflags="-s -w -X main.version=${{ github.ref_name }} -X main.buildDate=$(date -u '+%Y-%m-%d_%H:%M:%S') -X main.gitCommit=${{ github.sha }}" -o ${{ steps.binary.outputs.name }} .
+
+      - name: Upload binary
+        uses: actions/upload-artifact@v3
+        with:
+          name: ${{ steps.binary.outputs.name }}
+          path: ${{ steps.binary.outputs.name }}
+
+  release:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Download all artifacts
+        uses: actions/download-artifact@v3
+
+      - name: Create release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: |
+            context-extender-*/*
+          draft: false
+          prerelease: false
+          generate_release_notes: true
+          body: |
+            ## 🚀 Context-Extender Release ${{ github.ref_name }}
+
+            **Pure Go SQLite Implementation - Zero CGO Dependencies**
+
+            ### 📦 Downloads
+            Choose the appropriate binary for your platform:
+
+            - **Linux AMD64**: `context-extender-linux-amd64`
+            - **Linux ARM64**: `context-extender-linux-arm64`
+            - **macOS Intel**: `context-extender-darwin-amd64`
+            - **macOS Apple Silicon**: `context-extender-darwin-arm64`
+            - **Windows**: `context-extender-windows-amd64.exe`
+
+            ### 🔧 Installation
+
+            1. Download the appropriate binary for your platform
+            2. Make it executable (Unix systems): `chmod +x context-extender-*`
+            3. Rename for convenience: `mv context-extender-* context-extender`
+            4. Run: `./context-extender --help`
+
+            ### ✨ Features
+            - ✅ **Zero CGO Dependencies**: Pure Go implementation
+            - ✅ **Cross-Platform**: Works on Windows, macOS, and Linux
+            - ✅ **Claude Code Integration**: Automatic conversation capture
+            - ✅ **Database**: SQLite backend with full-text search
+            - ✅ **GraphQL API**: Powerful query interface
+            - ✅ **Import/Export**: Claude conversation management
+
+            ### 🎯 First-Time Setup
+            ```bash
+            # Initialize database
+            ./context-extender database init
+
+            # Install Claude Code hooks
+            ./context-extender configure
+
+            # Verify installation
+            ./context-extender database status
+            ```
+
+            Built with ❤️ using pure Go SQLite (modernc.org/sqlite)
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
