@@ -1,6 +1,7 @@
 package cmd
 
 import (
+	"context"
 	"encoding/json"
 	"fmt"
 	"strings"
@@ -362,9 +363,12 @@ Example:
 
 // initializeGraphQL initializes the GraphQL system
 func initializeGraphQL() error {
-	// Initialize database
-	config := database.DefaultConfig()
-	if err := database.Initialize(config); err != nil {
+	// Initialize database with new backend manager
+	config := database.DefaultDatabaseConfig()
+	manager := database.NewManager(config)
+
+	ctx := context.Background()
+	if err := manager.Initialize(ctx); err != nil {
 		return fmt.Errorf("failed to initialize database: %w", err)
 	}
 

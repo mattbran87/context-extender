@@ -109,7 +109,14 @@
       "Bash(\".\\context-extender-nocgo.exe\" version)",
       "Bash(\".\\context-extender-nocgo.exe\" database status)",
       "Bash(\"C:/Users/marko/sdk/go1.25.1/bin/go.exe\" run test_pure_go_sqlite.go)",
-      "Bash(git add:*)"
+      "Bash(git add:*)",
+      "Bash(\".\\context-extender.exe\" storage status)",
+      "Bash(\".\\context-extender.exe\" import --help)",
+      "Bash(\".\\context-extender.exe\" query --help)",
+      "Bash(\".\\context-extender.exe\" query list)",
+      "Bash(\".\\context-extender.exe\" graphql --help)",
+      "Bash(\".\\context-extender.exe\" graphql stats)",
+      "Bash(\".\\context-extender.exe\" database capture session-start)"
     ],
     "deny": [],
     "ask": []
