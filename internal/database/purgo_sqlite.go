@@ -516,8 +516,8 @@ func (b *PureGoSQLiteBackend) GetDatabaseStats(ctx context.Context) (*DatabaseSt
 		return nil, err
 	}
 
-	// Get oldest record
-	var oldestTime sql.NullTime
+	// Get oldest record - using string scanning for SQLite datetime compatibility
+	var oldestTimeStr sql.NullString
 	err = b.db.QueryRowContext(ctx, `
 		SELECT MIN(created_at) FROM (
 			SELECT created_at FROM sessions
@@ -526,16 +526,20 @@ func (b *PureGoSQLiteBackend) GetDatabaseStats(ctx context.Context) (*DatabaseSt
 			UNION ALL
 			SELECT timestamp FROM conversations
 		)
-	`).Scan(&oldestTime)
+	`).Scan(&oldestTimeStr)
 	if err != nil && err != sql.ErrNoRows {
 		return nil, err
 	}
-	if oldestTime.Valid {
-		stats.OldestRecord = &oldestTime.Time
+	if oldestTimeStr.Valid {
+		if parsed, parseErr := time.Parse("2006-01-02 15:04:05", oldestTimeStr.String); parseErr == nil {
+			stats.OldestRecord = &parsed
+		} else if parsed, parseErr := time.Parse(time.RFC3339, oldestTimeStr.String); parseErr == nil {
+			stats.OldestRecord = &parsed
+		}
 	}
 
-	// Get newest record
-	var newestTime sql.NullTime
+	// Get newest record - using string scanning for SQLite datetime compatibility
+	var newestTimeStr sql.NullString
 	err = b.db.QueryRowContext(ctx, `
 		SELECT MAX(created_at) FROM (
 			SELECT created_at FROM sessions
@@ -544,12 +548,16 @@ func (b *PureGoSQLiteBackend) GetDatabaseStats(ctx context.Context) (*DatabaseSt
 			UNION ALL
 			SELECT timestamp FROM conversations
 		)
-	`).Scan(&newestTime)
+	`).Scan(&newestTimeStr)
 	if err != nil && err != sql.ErrNoRows {
 		return nil, err
 	}
-	if newestTime.Valid {
-		stats.NewestRecord = &newestTime.Time
+	if newestTimeStr.Valid {
+		if parsed, parseErr := time.Parse("2006-01-02 15:04:05", newestTimeStr.String); parseErr == nil {
+			stats.NewestRecord = &parsed
+		} else if parsed, parseErr := time.Parse(time.RFC3339, newestTimeStr.String); parseErr == nil {
+			stats.NewestRecord = &parsed
+		}
 	}
 
 	return stats, nil

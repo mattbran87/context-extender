@@ -107,7 +107,9 @@
       "Bash(\".\\context-extender.exe\" database init)",
       "Bash(CGO_ENABLED=0 \"C:/Users/marko/sdk/go1.25.1/bin/go.exe\" build -o context-extender-nocgo.exe .)",
       "Bash(\".\\context-extender-nocgo.exe\" version)",
-      "Bash(\".\\context-extender-nocgo.exe\" database status)"
+      "Bash(\".\\context-extender-nocgo.exe\" database status)",
+      "Bash(\"C:/Users/marko/sdk/go1.25.1/bin/go.exe\" run test_pure_go_sqlite.go)",
+      "Bash(git add:*)"
     ],
     "deny": [],
     "ask": []
