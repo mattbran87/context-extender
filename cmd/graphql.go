@@ -372,6 +372,16 @@ func initializeGraphQL() error {
 		return fmt.Errorf("failed to initialize database: %w", err)
 	}
 
+	// TEMPORARY FIX: Initialize old database system for GraphQL compatibility
+	// TODO: Update GraphQL resolvers to use new backend directly
+	oldConfig := &database.Config{
+		DriverName:   "sqlite",
+		DatabasePath: config.DatabasePath,
+	}
+	if err := database.Initialize(oldConfig); err != nil {
+		return fmt.Errorf("failed to initialize legacy database for GraphQL: %w", err)
+	}
+
 	// Initialize GraphQL schema
 	if err := graphql.InitializeSchema(); err != nil {
 		return fmt.Errorf("failed to initialize GraphQL schema: %w", err)

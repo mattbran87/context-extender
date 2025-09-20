@@ -133,7 +133,16 @@
       "Bash(\".\\context-extender.exe\" --help)",
       "Bash(\".\\context-extender.exe\" configure --remove)",
       "Bash(curl:*)",
-      "Bash(cat:*)"
+      "Bash(cat:*)",
+      "Bash(CGO_ENABLED=0 \"C:/Users/marko/sdk/go1.25.1/bin/go.exe\" build -o context-extender-fixed.exe .)",
+      "Bash(\".\\context-extender-fixed.exe\" version)",
+      "Bash(\".\\context-extender-fixed.exe\" capture --help)",
+      "Bash(\".\\context-extender-fixed.exe\" graphql stats)",
+      "Bash(set CLAUDE_SESSION_ID=test-session-123)",
+      "Bash(\".\\context-extender-fixed.exe\" capture --event=user-prompt --data='Hello Claude!')",
+      "Bash(\".\\context-extender-fixed.exe\" capture --event=session-start)",
+      "Bash(\".\\context-extender-fixed.exe\" query list)",
+      "Bash(\"C:/Users/marko/sdk/go1.25.1/bin/go.exe\" run test_integration.go)"
     ],
     "deny": [],
     "ask": []

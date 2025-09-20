@@ -71,13 +71,21 @@ var migrateDbCmd = &cobra.Command{
 
 This is safe to run multiple times and will only apply new migrations.`,
 	RunE: func(cmd *cobra.Command, args []string) error {
-		config := database.DefaultConfig()
+		config := database.DefaultDatabaseConfig()
+		manager := database.NewManager(config)
 
-		if err := database.Initialize(config); err != nil {
+		ctx := cmd.Context()
+		if err := manager.Initialize(ctx); err != nil {
 			return fmt.Errorf("failed to initialize database: %w", err)
 		}
+		defer manager.Close()
 
-		if err := database.RunMigrations(); err != nil {
+		backend, err := manager.GetBackend()
+		if err != nil {
+			return fmt.Errorf("failed to get backend: %w", err)
+		}
+
+		if err := backend.MigrateSchema(ctx, 1); err != nil {
 			return fmt.Errorf("failed to run migrations: %w", err)
 		}
 
@@ -102,10 +110,14 @@ var sessionStartCmd = &cobra.Command{
 If no session ID is provided, a new UUID will be generated.`,
 	Args: cobra.MaximumNArgs(1),
 	RunE: func(cmd *cobra.Command, args []string) error {
-		config := database.DefaultConfig()
-		if err := database.Initialize(config); err != nil {
+		config := database.DefaultDatabaseConfig()
+		manager := database.NewManager(config)
+
+		ctx := cmd.Context()
+		if err := manager.Initialize(ctx); err != nil {
 			return fmt.Errorf("failed to initialize database: %w", err)
 		}
+		defer manager.Close()
 
 		sessionID := ""
 		if len(args) > 0 {
@@ -129,10 +141,14 @@ var userPromptCmd = &cobra.Command{
 Both session ID and message are required parameters.`,
 	Args: cobra.ExactArgs(2),
 	RunE: func(cmd *cobra.Command, args []string) error {
-		config := database.DefaultConfig()
-		if err := database.Initialize(config); err != nil {
+		config := database.DefaultDatabaseConfig()
+		manager := database.NewManager(config)
+
+		ctx := cmd.Context()
+		if err := manager.Initialize(ctx); err != nil {
 			return fmt.Errorf("failed to initialize database: %w", err)
 		}
+		defer manager.Close()
 
 		sessionID := args[0]
 		message := args[1]
@@ -154,10 +170,14 @@ var claudeResponseCmd = &cobra.Command{
 Both session ID and response are required parameters.`,
 	Args: cobra.ExactArgs(2),
 	RunE: func(cmd *cobra.Command, args []string) error {
-		config := database.DefaultConfig()
-		if err := database.Initialize(config); err != nil {
+		config := database.DefaultDatabaseConfig()
+		manager := database.NewManager(config)
+
+		ctx := cmd.Context()
+		if err := manager.Initialize(ctx); err != nil {
 			return fmt.Errorf("failed to initialize database: %w", err)
 		}
+		defer manager.Close()
 
 		sessionID := args[0]
 		response := args[1]
@@ -179,10 +199,14 @@ var sessionEndCmd = &cobra.Command{
 Session ID is required. An optional summary can be provided.`,
 	Args: cobra.ExactArgs(1),
 	RunE: func(cmd *cobra.Command, args []string) error {
-		config := database.DefaultConfig()
-		if err := database.Initialize(config); err != nil {
+		config := database.DefaultDatabaseConfig()
+		manager := database.NewManager(config)
+
+		ctx := cmd.Context()
+		if err := manager.Initialize(ctx); err != nil {
 			return fmt.Errorf("failed to initialize database: %w", err)
 		}
+		defer manager.Close()
 
 		sessionID := args[0]
 		summary, _ := cmd.Flags().GetString("summary")
