@@ -48,7 +48,7 @@ jobs:
           go build -ldflags="-s -w -X main.version=${{ github.ref_name }} -X main.buildDate=$(date -u '+%Y-%m-%d_%H:%M:%S') -X main.gitCommit=${{ github.sha }}" -o ${{ steps.binary.outputs.name }} .
 
       - name: Upload binary
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: ${{ steps.binary.outputs.name }}
           path: ${{ steps.binary.outputs.name }}
@@ -61,13 +61,15 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Download all artifacts
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
+        with:
+          path: artifacts
 
       - name: Create release
         uses: softprops/action-gh-release@v1
         with:
           files: |
-            context-extender-*/*
+            artifacts/*/*
           draft: false
           prerelease: false
           generate_release_notes: true
