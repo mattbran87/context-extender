@@ -122,7 +122,15 @@
       "Bash(\".\\context-extender.exe\" version)",
       "Bash(\".\\context-extender.exe\" database status)",
       "Bash(\".\\context-extender.exe\" configure --status)",
-      "Bash(gh repo create:*)"
+      "Bash(gh repo create:*)",
+      "Bash(gh run list:*)",
+      "Bash(git push:*)",
+      "Bash(git tag:*)",
+      "Bash(gh run view:*)",
+      "Bash(gh release upload:*)",
+      "Bash(gh release view:*)",
+      "Bash(\".\\context-extender.exe\" list)",
+      "Bash(\".\\context-extender.exe\" --help)"
     ],
     "deny": [],
     "ask": []

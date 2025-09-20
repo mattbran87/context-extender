@@ -43,9 +43,9 @@ Features:
 
 Example usage:
   context-extender configure               # Set up Claude Code hooks
-  context-extender list                    # List captured conversations
-  context-extender share session-123      # Share conversation context
-  context-extender config show            # Show current configuration`,
+  context-extender query list              # List captured conversations
+  context-extender database status         # Check database status
+  context-extender storage status          # Show storage configuration`,
 }
 
 // Execute adds all child commands to the root command and sets flags appropriately.
