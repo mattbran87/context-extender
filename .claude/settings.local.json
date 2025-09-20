@@ -130,7 +130,10 @@
       "Bash(gh release upload:*)",
       "Bash(gh release view:*)",
       "Bash(\".\\context-extender.exe\" list)",
-      "Bash(\".\\context-extender.exe\" --help)"
+      "Bash(\".\\context-extender.exe\" --help)",
+      "Bash(\".\\context-extender.exe\" configure --remove)",
+      "Bash(curl:*)",
+      "Bash(cat:*)"
     ],
     "deny": [],
     "ask": []
