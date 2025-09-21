@@ -150,7 +150,14 @@
       "Bash(\".\\context-extender.exe\" query show test-session-123)",
       "Bash(\".\\context-extender.exe\" export --format csv --output conversations.csv)",
       "Bash(\".\\context-extender.exe\" export --format csv --columns session_id,status,user_prompts,claude_replies --output summary.csv)",
-      "Bash(\".\\context-extender.exe\" export --format json --pretty --output backup.json)"
+      "Bash(\".\\context-extender.exe\" export --format json --pretty --output backup.json)",
+      "Bash(\".\\context-extender.exe\" export --format csv --sessions test-session-123,context-extender_42876 --output specific_sessions.csv)",
+      "Bash(\".\\context-extender.exe\" export --format csv --progress --output progress_test.csv)",
+      "Bash(\".\\context-extender.exe\" export --format csv --project context-extender --output project_filtered.csv)",
+      "Bash(\".\\context-extender.exe\" export --format csv --from invalid-date --output test.csv)",
+      "Bash(\".\\context-extender.exe\" export --format json --sessions test-session-123 --pretty --output single-session.json)",
+      "Bash(\"C:/Users/marko/sdk/go1.25.1/bin/go.exe\" get github.com/xuri/excelize/v2)",
+      "Bash(\".\\context-extender.exe\" export --format csv --preview --columns session_id,status,user_prompts,claude_replies)"
     ],
     "deny": [],
     "ask": []

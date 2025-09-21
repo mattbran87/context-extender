@@ -1,0 +1,7 @@
+session_id,project_name,start_time,end_time,duration,status,user_prompts,claude_replies,total_words,working_dir
+context-extender_18620,,0001-01-01 00:00:00,0001-01-01 00:00:00,0s,active,0,0,0,
+context-extender_14920,,0001-01-01 00:00:00,0001-01-01 00:00:00,0s,active,0,0,0,
+test-session-123,,0001-01-01 00:00:00,0001-01-01 00:00:00,0s,active,1,0,2,
+test-session-1758332950,,0001-01-01 00:00:00,0001-01-01 00:00:00,0s,active,1,0,2,
+test-session-1758333063,,0001-01-01 00:00:00,0001-01-01 00:00:00,0s,active,1,0,2,
+context-extender_42876,,0001-01-01 00:00:00,0001-01-01 00:00:00,0s,active,1,0,3,

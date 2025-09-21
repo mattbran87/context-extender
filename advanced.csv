@@ -1,0 +1,7 @@
+session_id,session_tags,avg_response_time,first_prompt,working_dir_name
+context-extender_18620,"quick-session, brief-interaction, still-active, night",0s,,context-extender
+context-extender_14920,"quick-session, brief-interaction, still-active, night",0s,,context-extender
+test-session-123,"quick-session, brief-interaction, still-active, night",0s,Hello Claude\!,context-extender
+test-session-1758332950,"quick-session, brief-interaction, still-active, night",0s,Test message,context-extender
+test-session-1758333063,"quick-session, brief-interaction, still-active, night",0s,Test message,tests
+context-extender_42876,"quick-session, brief-interaction, still-active, night, coding-session",0s,Testing capture functionality,context-extender

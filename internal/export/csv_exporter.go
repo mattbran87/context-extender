@@ -78,6 +78,11 @@ func (e *CSVExporter) Export(ctx context.Context, backend database.DatabaseBacke
 	return nil
 }
 
+// GetColumnValue extracts the value for a specific column from session data (public method)
+func (e *CSVExporter) GetColumnValue(session *SessionExportData, column string) string {
+	return e.getColumnValue(session, column)
+}
+
 // getColumnValue extracts the value for a specific column from session data
 func (e *CSVExporter) getColumnValue(session *SessionExportData, column string) string {
 	switch column {
@@ -107,6 +112,20 @@ func (e *CSVExporter) getColumnValue(session *SessionExportData, column string) 
 		return strconv.Itoa(session.UserWords)
 	case "claude_words":
 		return strconv.Itoa(session.ClaudeWords)
+	case "avg_response_time":
+		return session.AvgResponseTime
+	case "compression_events":
+		return strconv.Itoa(session.CompressionEvents)
+	case "tool_usage_count":
+		return strconv.Itoa(session.ToolUsageCount)
+	case "session_tags":
+		return strings.Join(session.SessionTags, ", ")
+	case "first_prompt":
+		return session.FirstPrompt
+	case "last_activity":
+		return session.LastActivity
+	case "working_dir_name":
+		return session.WorkingDirName
 	case "raw_metadata":
 		// Clean up metadata for CSV (remove newlines, escape quotes)
 		metadata := strings.ReplaceAll(session.RawMetadata, "\n", " ")
