@@ -1,0 +1,154 @@
+{
+  "metadata": {
+    "export_time": "2025-09-21T18:48:53.3844784-04:00",
+    "export_version": "1.0.0",
+    "format": "json",
+    "session_count": 6,
+    "total_records": 6,
+    "file_path": "backup.json",
+    "file_size": 0,
+    "options": {
+      "format": "json",
+      "output": "backup.json",
+      "pretty": true
+    }
+  },
+  "sessions": [
+    {
+      "session_id": "context-extender_18620",
+      "project_name": "",
+      "working_dir": "",
+      "start_time": "0001-01-01T00:00:00Z",
+      "end_time": "0001-01-01T00:00:00Z",
+      "duration": "0s",
+      "status": "active",
+      "event_count": 0,
+      "user_prompts": 0,
+      "claude_replies": 0,
+      "total_words": 0,
+      "user_words": 0,
+      "claude_words": 0,
+      "raw_metadata": "{\"working_directory\":\"C:/Users/marko/IdeaProjects/context-extender\",\"data\":\"\"}"
+    },
+    {
+      "session_id": "context-extender_14920",
+      "project_name": "",
+      "working_dir": "",
+      "start_time": "0001-01-01T00:00:00Z",
+      "end_time": "0001-01-01T00:00:00Z",
+      "duration": "0s",
+      "status": "active",
+      "event_count": 0,
+      "user_prompts": 0,
+      "claude_replies": 0,
+      "total_words": 0,
+      "user_words": 0,
+      "claude_words": 0,
+      "raw_metadata": "{\"working_directory\":\"C:/Users/marko/IdeaProjects/context-extender\",\"data\":\"{\\\"test\\\":\\\"data\\\"}\"}"
+    },
+    {
+      "session_id": "test-session-123",
+      "project_name": "",
+      "working_dir": "",
+      "start_time": "0001-01-01T00:00:00Z",
+      "end_time": "0001-01-01T00:00:00Z",
+      "duration": "0s",
+      "status": "active",
+      "event_count": 0,
+      "user_prompts": 1,
+      "claude_replies": 0,
+      "total_words": 2,
+      "user_words": 2,
+      "claude_words": 0,
+      "conversations": [
+        {
+          "id": "test-session-123_user_32104",
+          "session_id": "test-session-123",
+          "message_type": "user",
+          "content": "Hello Claude\\!",
+          "timestamp": "0001-01-01T00:00:00Z",
+          "metadata": "{}"
+        }
+      ],
+      "raw_metadata": "{\"working_directory\":\"C:/Users/marko/IdeaProjects/context-extender\",\"data\":\"\"}"
+    },
+    {
+      "session_id": "test-session-1758332950",
+      "project_name": "",
+      "working_dir": "",
+      "start_time": "0001-01-01T00:00:00Z",
+      "end_time": "0001-01-01T00:00:00Z",
+      "duration": "0s",
+      "status": "active",
+      "event_count": 0,
+      "user_prompts": 1,
+      "claude_replies": 0,
+      "total_words": 2,
+      "user_words": 2,
+      "claude_words": 0,
+      "conversations": [
+        {
+          "id": "test-session-1758332950_user_19232",
+          "session_id": "test-session-1758332950",
+          "message_type": "user",
+          "content": "Test message",
+          "timestamp": "0001-01-01T00:00:00Z",
+          "metadata": "{}"
+        }
+      ],
+      "raw_metadata": "{\"working_directory\":\"C:/Users/marko/IdeaProjects/context-extender\",\"data\":\"\"}"
+    },
+    {
+      "session_id": "test-session-1758333063",
+      "project_name": "",
+      "working_dir": "",
+      "start_time": "0001-01-01T00:00:00Z",
+      "end_time": "0001-01-01T00:00:00Z",
+      "duration": "0s",
+      "status": "active",
+      "event_count": 0,
+      "user_prompts": 1,
+      "claude_replies": 0,
+      "total_words": 2,
+      "user_words": 2,
+      "claude_words": 0,
+      "conversations": [
+        {
+          "id": "test-session-1758333063_user_28600",
+          "session_id": "test-session-1758333063",
+          "message_type": "user",
+          "content": "Test message",
+          "timestamp": "0001-01-01T00:00:00Z",
+          "metadata": "{}"
+        }
+      ],
+      "raw_metadata": "{\"working_directory\":\"C:/Users/marko/IdeaProjects/context-extender/tests\",\"data\":\"\"}"
+    },
+    {
+      "session_id": "context-extender_42876",
+      "project_name": "",
+      "working_dir": "",
+      "start_time": "0001-01-01T00:00:00Z",
+      "end_time": "0001-01-01T00:00:00Z",
+      "duration": "0s",
+      "status": "active",
+      "event_count": 0,
+      "user_prompts": 1,
+      "claude_replies": 0,
+      "total_words": 3,
+      "user_words": 3,
+      "claude_words": 0,
+      "conversations": [
+        {
+          "id": "context-extender_42876_user_35204",
+          "session_id": "context-extender_42876",
+          "message_type": "user",
+          "content": "Testing capture functionality",
+          "timestamp": "0001-01-01T00:00:00Z",
+          "metadata": "{}"
+        }
+      ],
+      "raw_metadata": "{\"working_directory\":\"C:/Users/marko/IdeaProjects/context-extender\",\"data\":\"\"}"
+    }
+  ]
+}

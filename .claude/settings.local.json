@@ -147,7 +147,10 @@
       "Bash(.claude/scripts/start_new_cycle.sh:*)",
       "WebFetch(domain:docs.claude.com)",
       "Bash(findstr:*)",
-      "Bash(\".\\context-extender.exe\" query show test-session-123)"
+      "Bash(\".\\context-extender.exe\" query show test-session-123)",
+      "Bash(\".\\context-extender.exe\" export --format csv --output conversations.csv)",
+      "Bash(\".\\context-extender.exe\" export --format csv --columns session_id,status,user_prompts,claude_replies --output summary.csv)",
+      "Bash(\".\\context-extender.exe\" export --format json --pretty --output backup.json)"
     ],
     "deny": [],
     "ask": []
