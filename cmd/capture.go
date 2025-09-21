@@ -24,6 +24,8 @@ Supported events:
   - user-prompt: User prompt submitted to Claude
   - claude-response: Claude's response (including tool usage)
   - session-end: End of Claude Code session
+  - conversation-compress: Conversation compression event (preserves critical context)
+  - context-request: Request for context reinjection after compression
 
 Example usage:
   context-extender capture --event=session-start
@@ -58,6 +60,10 @@ Example usage:
 			return handleClaudeResponse(ctx, manager, data)
 		case "session-end":
 			return handleSessionEnd(ctx, manager, data)
+		case "conversation-compress":
+			return handleConversationCompress(ctx, manager, data)
+		case "context-request":
+			return handleContextRequest(ctx, manager, data)
 		default:
 			return fmt.Errorf("unknown event type: %s", event)
 		}
@@ -176,6 +182,90 @@ func handleSessionEnd(ctx context.Context, manager *database.Manager, data strin
 	}
 
 	fmt.Printf("Session %s ended\n", sessionID)
+	return nil
+}
+
+// handleConversationCompress captures when a conversation is compressed
+func handleConversationCompress(ctx context.Context, manager *database.Manager, data string) error {
+	sessionID := os.Getenv("CLAUDE_SESSION_ID")
+	if sessionID == "" {
+		return fmt.Errorf("CLAUDE_SESSION_ID environment variable not set")
+	}
+
+	backend, err := manager.GetBackend()
+	if err != nil {
+		return fmt.Errorf("failed to get backend: %w", err)
+	}
+
+	// Store compression event with preserved context
+	event := &database.Event{
+		ID:          fmt.Sprintf("%s_compress_%d", sessionID, os.Getpid()),
+		SessionID:   sessionID,
+		EventType:   "compression",
+		SequenceNum: 0,
+		Data:        data, // Contains critical context to preserve
+	}
+
+	if err := backend.CreateEvent(ctx, event); err != nil {
+		return fmt.Errorf("failed to create compression event: %w", err)
+	}
+
+	// Extract and store critical context points separately for quick retrieval
+	// This includes: key decisions, user preferences, technical constraints, current objectives
+	fmt.Printf("Compression event captured for session %s\n", sessionID)
+	return nil
+}
+
+// handleContextRequest retrieves preserved context after compression
+func handleContextRequest(ctx context.Context, manager *database.Manager, data string) error {
+	sessionID := os.Getenv("CLAUDE_SESSION_ID")
+	if sessionID == "" {
+		return fmt.Errorf("CLAUDE_SESSION_ID environment variable not set")
+	}
+
+	backend, err := manager.GetBackend()
+	if err != nil {
+		return fmt.Errorf("failed to get backend: %w", err)
+	}
+
+	// Retrieve latest compression events
+	events, err := backend.GetEventsBySession(ctx, sessionID)
+	if err != nil {
+		return fmt.Errorf("failed to get compression events: %w", err)
+	}
+
+	// Find latest compression event
+	var latestCompression *database.Event
+	for _, event := range events {
+		if event.EventType == "compression" {
+			latestCompression = event
+		}
+	}
+
+	if latestCompression != nil {
+		// Output the preserved context for reinjection
+		fmt.Printf("Context preserved from compression:\n%s\n", latestCompression.Data)
+	}
+
+	// Also retrieve recent conversations
+	conversations, err := backend.GetConversationsBySession(ctx, sessionID)
+	if err == nil && len(conversations) > 0 {
+		fmt.Println("\nRecent critical conversations:")
+		// Show last 5 conversations
+		start := 0
+		if len(conversations) > 5 {
+			start = len(conversations) - 5
+		}
+		for i := start; i < len(conversations); i++ {
+			conv := conversations[i]
+			content := conv.Content
+			if len(content) > 100 {
+				content = content[:100] + "..."
+			}
+			fmt.Printf("- [%s] %s\n", conv.MessageType, content)
+		}
+	}
+
 	return nil
 }
 

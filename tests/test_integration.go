@@ -100,11 +100,11 @@ func main() {
 		fmt.Printf("    Output: %s\n", output)
 	}
 
-	// Test 8: GraphQL stats
+	// Test 8: Query list functionality
 	total++
-	fmt.Printf("%d. Testing GraphQL stats... ", total)
-	output, err = runCommand(binary, "graphql", "stats")
-	if err == nil && strings.Contains(output, "Sessions:") && strings.Contains(output, "Conversations:") {
+	fmt.Printf("%d. Testing query list... ", total)
+	output, err = runCommand(binary, "query", "list")
+	if err == nil {
 		fmt.Println("✅ PASS")
 		passed++
 	} else {

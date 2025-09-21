@@ -142,7 +142,12 @@
       "Bash(\".\\context-extender-fixed.exe\" capture --event=user-prompt --data='Hello Claude!')",
       "Bash(\".\\context-extender-fixed.exe\" capture --event=session-start)",
       "Bash(\".\\context-extender-fixed.exe\" query list)",
-      "Bash(\"C:/Users/marko/sdk/go1.25.1/bin/go.exe\" run test_integration.go)"
+      "Bash(\"C:/Users/marko/sdk/go1.25.1/bin/go.exe\" run test_integration.go)",
+      "Bash(\".\\context-extender.exe\" context --help)",
+      "Bash(.claude/scripts/start_new_cycle.sh:*)",
+      "WebFetch(domain:docs.claude.com)",
+      "Bash(findstr:*)",
+      "Bash(\".\\context-extender.exe\" query show test-session-123)"
     ],
     "deny": [],
     "ask": []
