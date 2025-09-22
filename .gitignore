@@ -35,11 +35,22 @@ Thumbs.db
 *.temp
 *~
 
-# Export test files
-*.csv
-*.json
-*.xlsx
-*.json.gz
+# Export test files and temporary data
+*test*.csv
+*test*.json
+*test*.xlsx
+*test*.json.gz
+*export*.xlsx
+*backup*.json
+*backup*.json.gz
+*conversations*.csv
+*sessions*.xlsx
+*summary*.csv
+*advanced*.csv
+*progress*.csv
+*specific*.csv
+*validated*.xlsx
+*comprehensive*.xlsx
 *.key
 *.db
 

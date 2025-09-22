@@ -2,30 +2,39 @@
 
 **Automatically capture and manage your Claude Code conversations**
 
+[![Version](https://img.shields.io/badge/version-1.2.0-blue.svg)](https://github.com/mattbran87/context-extender/releases/latest)
+[![Platform](https://img.shields.io/badge/platform-Windows%20%7C%20macOS%20%7C%20Linux-lightgrey.svg)](#-requirements)
+
 Context-Extender seamlessly integrates with Claude Code to capture all your conversations, enabling powerful features like conversation history, search, analytics, and data export.
 
 ## 🚀 Quick Start
 
-### 1. Install (First Time)
+### 1. Download & Install
+[**⬇️ Download Latest Release (v1.2.0)**](https://github.com/mattbran87/context-extender/releases/latest)
+
 ```bash
-# Interactive installation wizard (recommended)
+# First-time setup (recommended) - Interactive wizard with guidance
 context-extender install
 
-# Or quick setup for experienced users
+# Quick setup for experienced users - Immediate installation
 context-extender configure
 ```
 
+**What's the difference?**
+- `install` - Interactive wizard with explanations, perfect for first-time users
+- `configure` - Direct installation without prompts, ideal for experienced users
+
 ### 2. Start Using
-- Open Claude Code and have conversations as normal
-- Context-Extender automatically captures everything
-- No changes needed to your workflow!
+✅ Open Claude Code and have conversations as normal
+✅ Context-Extender automatically captures everything
+✅ No changes needed to your workflow!
 
 ### 3. View Your Data
 ```bash
 # List all conversations
 context-extender query list
 
-# Export to Excel with charts
+# Export to Excel with charts and analytics
 context-extender export --format xlsx --output my-conversations.xlsx
 ```
 
@@ -35,6 +44,7 @@ context-extender export --format xlsx --output my-conversations.xlsx
 - **🔍 Search & Filter**: Find any conversation instantly
 - **📊 Rich Exports**: CSV, JSON, Excel with charts and analytics
 - **📈 Usage Analytics**: Track your Claude Code productivity
+- **🗑️ Safe Uninstall**: Professional uninstall with data protection (NEW in v1.2.0)
 - **🔒 Privacy First**: All data stays local on your computer
 - **⚡ High Performance**: Zero impact on Claude Code speed
 
@@ -53,22 +63,28 @@ context-extender export --format xlsx --output my-conversations.xlsx
 
 ## 🛠 Installation Options
 
-### Interactive Wizard (Best for First-Time Users)
+### 🌟 Interactive Wizard (Best for First-Time Users)
 ```bash
 context-extender install
 ```
-Step-by-step guidance with explanations at every step.
+✅ Step-by-step guidance with explanations
+✅ System requirements checking
+✅ Installation testing and verification
+✅ Built-in getting started tutorial
 
-### Quick Setup (For Experienced Users)
+### ⚡ Quick Setup (For Experienced Users)
 ```bash
 context-extender configure
 ```
-Immediate installation without interactive prompts.
+✅ Immediate installation without interactive prompts
+✅ Automatic database initialization
+✅ Hook verification and testing
 
-### Check Installation
+### 🔍 Check Installation Status
 ```bash
 context-extender configure --status
 ```
+Shows detailed hook status and Claude Code integration health.
 
 ## 📊 Export Your Data
 
@@ -90,16 +106,19 @@ context-extender export --format json --pretty --output conversations.json
 ### Advanced Filtering
 ```bash
 # Last week's conversations
-context-extender export --format xlsx --from 2024-01-01 --to 2024-01-07 --output week.xlsx
+context-extender export --format xlsx --from 2025-01-15 --to 2025-01-22 --output week.xlsx
 
 # Specific columns only
 context-extender export --format csv --columns session_id,user_prompts,claude_replies --output summary.csv
 
-# Preview before exporting
+# Preview before exporting (see what you'll get)
 context-extender export --format csv --preview
+
+# Compress large exports (90% size reduction)
+context-extender export --format json --compress --output backup.json.gz
 ```
 
-## 🔧 Common Commands
+## 🔧 Essential Commands
 
 ```bash
 # Check what's being captured
@@ -111,15 +130,35 @@ context-extender query show <session-id>
 # Database status and statistics
 context-extender database status
 
-# Complete uninstall
-context-extender uninstall
-
-# Remove hooks only (keep data)
-context-extender uninstall --keep-data
-
-# See all options
+# See all available commands
 context-extender --help
 ```
+
+## 🗑️ Uninstall Options
+
+### Safe Complete Removal
+```bash
+context-extender uninstall
+```
+✅ Interactive prompts prevent accidental data loss
+✅ Removes Claude Code hooks
+✅ Deletes database and conversation data (with confirmation)
+✅ Cleans up system PATH installation
+
+### Keep Your Data
+```bash
+context-extender uninstall --keep-data
+```
+✅ Removes hooks but preserves all conversation data
+✅ Perfect for temporary removal or reinstallation
+✅ Data will be automatically detected on reinstall
+
+### Automated Uninstall
+```bash
+context-extender uninstall --force
+```
+⚠️ Skips confirmation prompts (use with caution)
+⚠️ Intended for scripts and automation
 
 ## 🛡 Privacy & Security
 
@@ -130,25 +169,42 @@ context-extender --help
 
 ## 🚨 Troubleshooting
 
-**No conversations appearing?**
-1. Check hook status: `context-extender configure --status`
-2. Restart Claude Code after installation
-3. Ensure you're having actual conversations (not just opening Claude Code)
+### No conversations appearing?
+1. **Check hook status**: `context-extender configure --status`
+2. **Restart Claude Code** after installation
+3. **Have actual conversations** (prompts + responses, not just opening Claude Code)
+4. **Verify installation**: Try `context-extender install` for guided diagnostics
 
-**Installation issues?**
-1. Verify Claude Code is installed and working
-2. Run with administrator privileges if needed
-3. Check that Claude Code settings file isn't read-only
+### Installation issues?
+1. **Verify Claude Code** is installed and working properly
+2. **Run as administrator** (Windows) or with `sudo` (macOS/Linux) if needed
+3. **Check file permissions** - Claude Code settings file isn't read-only
+4. **Use interactive wizard**: `context-extender install` provides step-by-step diagnostics
 
-**Need help?** See [GETTING_STARTED.md](GETTING_STARTED.md) for detailed instructions.
+### Database errors?
+✅ **Fixed in v1.2.0**: Database tables now automatically created during installation
+- Old installations: Run `context-extender configure` to fix database issues
+- Fresh installations: Database setup is automatic
+
+**Need more help?** See [GETTING_STARTED.md](GETTING_STARTED.md) for detailed instructions.
 
 ## 🤝 Contributing
 
-Found a bug or want a feature? [File an issue](https://github.com/your-repo/context-extender/issues) or submit a pull request.
+Found a bug or want a feature? [File an issue](https://github.com/mattbran87/context-extender/issues) or submit a pull request.
 
 ## 📄 License
 
 Open source under MIT License. See LICENSE file for details.
+
+## 🆕 What's New in v1.2.0
+
+- 🗑️ **Professional Uninstall System** - Safe removal with data protection options
+- 🚀 **Interactive Installation Wizard** - Step-by-step setup for first-time users
+- 🛠️ **Fixed Database Issues** - Automatic schema creation during installation
+- 📚 **Complete Documentation** - Professional README and getting started guide
+- 🔧 **Enhanced CLI Help** - Better command organization and examples
+
+[**📝 Full Release Notes**](https://github.com/mattbran87/context-extender/releases/tag/v1.2.0)
 
 ---
 
