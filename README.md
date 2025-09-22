@@ -10,17 +10,44 @@ Context-Extender seamlessly integrates with Claude Code to capture all your conv
 ## 🚀 Quick Start
 
 ### 1. Download & Install
-[**⬇️ Download Latest Release (v1.2.0)**](https://github.com/mattbran87/context-extender/releases/latest)
 
+#### 🪟 **Windows**
+[**⬇️ Download for Windows**](https://github.com/mattbran87/context-extender/releases/download/v1.2.0/context-extender-1.2.0-windows-amd64.exe)
 ```bash
-# First-time setup (recommended) - Interactive wizard with guidance
-context-extender install
+# Rename downloaded file for easier use
+mv context-extender-1.2.0-windows-amd64.exe context-extender.exe
 
-# Quick setup for experienced users - Immediate installation
-context-extender configure
+# Interactive installation (recommended)
+./context-extender.exe install
 ```
 
-**What's the difference?**
+#### 🍎 **macOS**
+```bash
+# Intel Mac
+curl -L -o context-extender https://github.com/mattbran87/context-extender/releases/download/v1.2.0/context-extender-1.2.0-darwin-amd64
+
+# Apple Silicon (M1/M2/M3)
+curl -L -o context-extender https://github.com/mattbran87/context-extender/releases/download/v1.2.0/context-extender-1.2.0-darwin-arm64
+
+# Make executable and install
+chmod +x context-extender
+./context-extender install
+```
+
+#### 🐧 **Linux**
+```bash
+# x86_64 (Intel/AMD)
+curl -L -o context-extender https://github.com/mattbran87/context-extender/releases/download/v1.2.0/context-extender-1.2.0-linux-amd64
+
+# ARM64 (Raspberry Pi, etc.)
+curl -L -o context-extender https://github.com/mattbran87/context-extender/releases/download/v1.2.0/context-extender-1.2.0-linux-arm64
+
+# Make executable and install
+chmod +x context-extender
+./context-extender install
+```
+
+**Installation Options:**
 - `install` - Interactive wizard with explanations, perfect for first-time users
 - `configure` - Direct installation without prompts, ideal for experienced users
 
@@ -57,9 +84,10 @@ context-extender export --format xlsx --output my-conversations.xlsx
 
 ## 📋 Requirements
 
-- Claude Code installed and working
-- Windows, macOS, or Linux
-- No additional dependencies
+- **Claude Code** installed and working
+- **Operating System**: Windows, macOS, or Linux
+- **Architecture**: x86_64 (Intel/AMD) or ARM64 (Apple Silicon, Raspberry Pi)
+- **Dependencies**: None! Pure Go binaries work out of the box
 
 ## 🛠 Installation Options
 
