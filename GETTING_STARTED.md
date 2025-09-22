@@ -4,15 +4,57 @@ Welcome to Context-Extender! This guide will help you get up and running quickly
 
 ## 🚀 Quick Installation
 
-### Option 1: Interactive Wizard (Recommended for first-time users)
+### Step 1: Download for Your Platform
+
+#### 🪟 **Windows**
 ```bash
-context-extender install
+# Download directly or visit GitHub releases
+curl -L -o context-extender.exe https://github.com/mattbran87/context-extender/releases/download/v1.2.0/context-extender-1.2.0-windows-amd64.exe
+```
+
+#### 🍎 **macOS**
+```bash
+# Intel Mac
+curl -L -o context-extender https://github.com/mattbran87/context-extender/releases/download/v1.2.0/context-extender-1.2.0-darwin-amd64
+
+# Apple Silicon (M1/M2/M3)
+curl -L -o context-extender https://github.com/mattbran87/context-extender/releases/download/v1.2.0/context-extender-1.2.0-darwin-arm64
+
+# Make executable
+chmod +x context-extender
+```
+
+#### 🐧 **Linux**
+```bash
+# x86_64 (Intel/AMD)
+curl -L -o context-extender https://github.com/mattbran87/context-extender/releases/download/v1.2.0/context-extender-1.2.0-linux-amd64
+
+# ARM64 (Raspberry Pi, etc.)
+curl -L -o context-extender https://github.com/mattbran87/context-extender/releases/download/v1.2.0/context-extender-1.2.0-linux-arm64
+
+# Make executable
+chmod +x context-extender
+```
+
+### Step 2: Choose Installation Method
+
+#### Option 1: Interactive Wizard (Recommended for first-time users)
+```bash
+# Windows
+./context-extender.exe install
+
+# macOS/Linux
+./context-extender install
 ```
 The wizard will guide you through every step with explanations.
 
-### Option 2: Quick Setup (For experienced users)
+#### Option 2: Quick Setup (For experienced users)
 ```bash
-context-extender configure
+# Windows
+./context-extender.exe configure
+
+# macOS/Linux
+./context-extender configure
 ```
 This installs hooks immediately without interactive prompts.
 
