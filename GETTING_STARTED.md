@@ -12,7 +12,22 @@ Welcome to Context-Extender! This guide will help you get up and running quickly
 curl -L -o context-extender.exe https://github.com/mattbran87/context-extender/releases/download/v1.2.0/context-extender-1.2.0-windows-amd64.exe
 ```
 
-#### 🍎 **macOS**
+#### 🍎 **macOS** & 🐧 **Linux** (Recommended)
+```bash
+# Automatic installation script (detects platform and architecture)
+curl -fsSL https://raw.githubusercontent.com/mattbran87/context-extender/master/install.sh | sh
+```
+
+This script will:
+- ✅ Auto-detect your platform (macOS vs Linux)
+- ✅ Auto-detect your architecture (Intel/AMD vs ARM)
+- ✅ Download the correct binary
+- ✅ Install it to your PATH
+- ✅ Run the installation wizard
+
+#### Manual Download (Alternative)
+If you prefer manual installation:
+
 ```bash
 # Intel Mac
 curl -L -o context-extender https://github.com/mattbran87/context-extender/releases/download/v1.2.0/context-extender-1.2.0-darwin-amd64
@@ -20,25 +35,24 @@ curl -L -o context-extender https://github.com/mattbran87/context-extender/relea
 # Apple Silicon (M1/M2/M3)
 curl -L -o context-extender https://github.com/mattbran87/context-extender/releases/download/v1.2.0/context-extender-1.2.0-darwin-arm64
 
-# Make executable
-chmod +x context-extender
-```
-
-#### 🐧 **Linux**
-```bash
-# x86_64 (Intel/AMD)
+# Linux x86_64 (Intel/AMD)
 curl -L -o context-extender https://github.com/mattbran87/context-extender/releases/download/v1.2.0/context-extender-1.2.0-linux-amd64
 
-# ARM64 (Raspberry Pi, etc.)
+# Linux ARM64 (Raspberry Pi, etc.)
 curl -L -o context-extender https://github.com/mattbran87/context-extender/releases/download/v1.2.0/context-extender-1.2.0-linux-arm64
 
 # Make executable
 chmod +x context-extender
 ```
 
-### Step 2: Choose Installation Method
+### Step 2: Installation Setup
 
-#### Option 1: Interactive Wizard (Recommended for first-time users)
+#### If you used the install script (macOS/Linux):
+✅ **You're done!** The script automatically runs the installation wizard.
+
+#### If you downloaded manually:
+
+**Option 1: Interactive Wizard (Recommended for first-time users)**
 ```bash
 # Windows
 ./context-extender.exe install
@@ -48,7 +62,7 @@ chmod +x context-extender
 ```
 The wizard will guide you through every step with explanations.
 
-#### Option 2: Quick Setup (For experienced users)
+**Option 2: Quick Setup (For experienced users)**
 ```bash
 # Windows
 ./context-extender.exe configure

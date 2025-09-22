@@ -21,7 +21,13 @@ mv context-extender-1.2.0-windows-amd64.exe context-extender.exe
 ./context-extender.exe install
 ```
 
-#### 🍎 **macOS**
+#### 🍎 **macOS** & 🐧 **Linux**
+```bash
+# One-command installation (auto-detects platform and architecture)
+curl -fsSL https://raw.githubusercontent.com/mattbran87/context-extender/master/install.sh | sh
+```
+
+**Manual Installation (if you prefer):**
 ```bash
 # Intel Mac
 curl -L -o context-extender https://github.com/mattbran87/context-extender/releases/download/v1.2.0/context-extender-1.2.0-darwin-amd64
@@ -29,17 +35,10 @@ curl -L -o context-extender https://github.com/mattbran87/context-extender/relea
 # Apple Silicon (M1/M2/M3)
 curl -L -o context-extender https://github.com/mattbran87/context-extender/releases/download/v1.2.0/context-extender-1.2.0-darwin-arm64
 
-# Make executable and install
-chmod +x context-extender
-./context-extender install
-```
-
-#### 🐧 **Linux**
-```bash
-# x86_64 (Intel/AMD)
+# Linux x86_64 (Intel/AMD)
 curl -L -o context-extender https://github.com/mattbran87/context-extender/releases/download/v1.2.0/context-extender-1.2.0-linux-amd64
 
-# ARM64 (Raspberry Pi, etc.)
+# Linux ARM64 (Raspberry Pi, etc.)
 curl -L -o context-extender https://github.com/mattbran87/context-extender/releases/download/v1.2.0/context-extender-1.2.0-linux-arm64
 
 # Make executable and install
