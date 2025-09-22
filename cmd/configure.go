@@ -1,11 +1,13 @@
 package cmd
 
 import (
+	"context"
 	"fmt"
 
 	"github.com/spf13/cobra"
 
 	"context-extender/internal/config"
+	"context-extender/internal/database"
 	"context-extender/internal/hooks"
 )
 
@@ -105,6 +107,14 @@ func installHooks() error {
 		return fmt.Errorf("installation verification failed")
 	}
 	fmt.Println("✅ VERIFIED")
+
+	// Initialize database
+	fmt.Print("Initializing database... ")
+	if err := initializeDatabase(); err != nil {
+		fmt.Println("❌ FAILED")
+		return fmt.Errorf("failed to initialize database: %w", err)
+	}
+	fmt.Println("✅ SUCCESS")
 
 	// Show success message
 	fmt.Println("\n🎉 Configuration completed successfully!")
@@ -219,4 +229,25 @@ func showInstallationStatus() error {
 	}
 
 	return nil
+}
+
+func initializeDatabase() error {
+	config := database.DefaultDatabaseConfig()
+	manager := database.NewManager(config)
+
+	ctx := context.Background()
+	if err := manager.Initialize(ctx); err != nil {
+		return err
+	}
+	defer manager.Close()
+
+	// Ensure schema is created by testing database operations
+	backend, err := manager.GetBackend()
+	if err != nil {
+		return err
+	}
+
+	// Test basic database operation to ensure schema is working
+	_, err = backend.ListSessions(ctx, nil)
+	return err
 }

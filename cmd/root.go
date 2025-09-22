@@ -39,13 +39,24 @@ Features:
 - Automatic conversation capture via Claude Code hooks
 - Session correlation and storage management
 - Context sharing between Claude Code sessions
+- Export to CSV, JSON, Excel formats
 - Cross-platform support (Windows, Mac, Linux)
 
-Example usage:
+🚀 First-time setup:
+  context-extender install                 # Interactive installation wizard
+
+🔧 Quick setup:
   context-extender configure               # Set up Claude Code hooks
+  context-extender configure --status      # Check installation status
+
+📊 Using the tool:
   context-extender query list              # List captured conversations
+  context-extender export --format xlsx    # Export to Excel
   context-extender database status         # Check database status
-  context-extender storage status          # Show storage configuration`,
+
+🗑️  Uninstall:
+  context-extender uninstall               # Remove completely from system
+  context-extender uninstall --keep-data   # Remove but keep conversations`,
 }
 
 // Execute adds all child commands to the root command and sets flags appropriately.
