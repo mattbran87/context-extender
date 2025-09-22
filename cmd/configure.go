@@ -3,6 +3,8 @@ package cmd
 import (
 	"context"
 	"fmt"
+	"os"
+	"path/filepath"
 
 	"github.com/spf13/cobra"
 
@@ -233,6 +235,14 @@ func showInstallationStatus() error {
 
 func initializeDatabase() error {
 	config := database.DefaultDatabaseConfig()
+
+	// Create directory if it doesn't exist
+	dbDir := filepath.Dir(config.DatabasePath)
+	if err := os.MkdirAll(dbDir, 0755); err != nil {
+		return fmt.Errorf("failed to create database directory: %w", err)
+	}
+
+	// Create database manager
 	manager := database.NewManager(config)
 
 	ctx := context.Background()
@@ -241,10 +251,20 @@ func initializeDatabase() error {
 	}
 	defer manager.Close()
 
-	// Ensure schema is created by testing database operations
+	// Get backend and create schema
 	backend, err := manager.GetBackend()
 	if err != nil {
-		return err
+		return fmt.Errorf("failed to get backend: %w", err)
+	}
+
+	// Create schema
+	if err := backend.CreateSchema(ctx); err != nil {
+		return fmt.Errorf("failed to create schema: %w", err)
+	}
+
+	// Run migrations
+	if err := backend.MigrateSchema(ctx, 1); err != nil {
+		return fmt.Errorf("failed to run migrations: %w", err)
 	}
 
 	// Test basic database operation to ensure schema is working

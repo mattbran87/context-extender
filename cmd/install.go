@@ -217,6 +217,14 @@ func performInstallation() error {
 	}
 	fmt.Println("✅ VERIFIED")
 
+	// Initialize database
+	fmt.Print("⚡ Initializing database... ")
+	if err := initializeDatabase(); err != nil {
+		fmt.Println("❌ FAILED")
+		return fmt.Errorf("failed to initialize database: %w", err)
+	}
+	fmt.Println("✅ SUCCESS")
+
 	fmt.Println()
 	fmt.Println("✅ Installation completed successfully!")
 
@@ -309,6 +317,7 @@ func testDatabase() error {
 	_, err = backend.ListSessions(ctx, nil)
 	return err
 }
+
 
 func promptContinue(message string) bool {
 	reader := bufio.NewReader(os.Stdin)
